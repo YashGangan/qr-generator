@@ -2,11 +2,12 @@
   "name": "qrcodegenerator",
   "version": "1.0.0",
   "description": "qr generator for urls",
-  "main": "api/server.js",
+  "main": "api/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node api/server.js"
+    "build": "node api/server.js",
+    "vercel-build": "echo hello"
   },
   "author": "yash",
   "license": "ISC",
