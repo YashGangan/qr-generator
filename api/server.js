@@ -28,4 +28,4 @@ app.listen(port, () => {
     console.log(`QR Code Generator app listening at http://localhost:${port}`);
   });
 
-// module.exports = app;
+export default app;
