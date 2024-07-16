@@ -2,11 +2,11 @@
   "name": "qrcodegenerator",
   "version": "1.0.0",
   "description": "qr generator for urls",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm server.js"
+    "start": "npm api/server.js"
   },
   "author": "yash",
   "license": "ISC",
