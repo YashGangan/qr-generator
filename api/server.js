@@ -1,16 +1,20 @@
 import express from "express";
 import qr from "qr-image";
+import path from "path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const app = express();
 const port = 3000;
 
-// app.set('view engine', 'html');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get("/", (req, res) => {
-    res.sendFile('../public/index.html');
-})
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 app.get("/generate", (req, res) => {
     const url = req.query.url;
