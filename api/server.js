@@ -9,7 +9,7 @@ const port = 3000;
 app.use(express.static('public'));
 
 app.get("/", (req, res) => {
-    res.sendFile('./public/index.html');
+    res.sendFile('../public/index.html');
 })
 
 app.get("/generate", (req, res) => {
@@ -29,4 +29,4 @@ app.listen(port, () => {
     console.log(`QR Code Generator app listening at http://localhost:${port}`);
   });
 
-module.exports = app;
+// module.exports = app;
