@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Hero -->
+<div class="bg-gradient-to-b from-violet-600/10 via-transparent">
+    <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-24 space-y-5">
+      <!-- Title -->
+      <div class="max-w-3xl text-center mx-auto">
+        <h1 class="block font-medium text-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+          QR Code Generator
+        </h1>
+      </div>
+      <!-- End Title -->
+  
+      <div class="max-w-3xl text-center mx-auto">
+        <p class="text-lg text-gray-600">Generate QR Codes with one click, no sign-ups required!</p>
+      </div>
+  
+      <!-- Buttons -->
+       <form>
+            <div class="mt-10 lg:mt-8 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3">
+                <div class="w-3/4 md:w-1/2">
+                <label for="hero-input" class="sr-only">Search</label>
+                <input type="url" name="url" id="url" class="py-3 px-4 block w-full border-2 rounded-lg text-sm" placeholder="Enter a url">
+                </div>
+                <a id="submit" class="w-3/4 sm:w-auto whitespace-nowrap py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" href="#">
+                Generate QR
+                </a>
+            </div>
+    <div id="result" class="mt-10 flex flex-col items-center"></div>
+      <!-- End Buttons -->
+    </div>
+    <div class="text-center">
+        Made with ❤️ by <a href="https://yashgangan.vercel.app/" class="underline">Yash Gangan</a>
+    </div>
+  </div>
+  <!-- End Hero -->
+
+<script>
+        // Function to get the url
+  let userURL = "";
+  // on click trigger this function
+  document.querySelector('#submit').addEventListener('click', generateCode);
+
+  function generateCode() {
+    userURL = document.querySelector('#url').value;
+    if (!userURL) {
+        document.getElementById('result').innerHTML = '';
+        alert("Please provide a url");
+        return;
+    }
+    fetch(`/generate?url=${encodeURIComponent(userURL)}`)
+    .then(response => response.blob())
+    .then(blob => {
+      const qrCodeImage = URL.createObjectURL(blob);
+      const qrCodeDiv = document.getElementById('result');
+      qrCodeDiv.innerHTML = '';
+      const qrLink = document.createElement('a');
+      qrLink.href = qrCodeImage;
+      qrLink.setAttribute("download", "image");
+      const img = document.createElement('img');
+      img.src = qrCodeImage;
+      qrLink.appendChild(img);
+      const qrText = document.createElement('p');
+      qrText.textContent = 'Click to download';
+      qrCodeDiv.appendChild(qrLink);
+      qrCodeDiv.appendChild(qrText);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+    </script>
+</body>
+</html>
