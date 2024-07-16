@@ -14,7 +14,6 @@ app.get("/", (req, res) => {
 
 app.get("/generate", (req, res) => {
     const url = req.query.url;
-    console.log(url)
     if (!url) {
         return res.status(400).send('URL is required');
       }
