@@ -13,7 +13,14 @@ const __dirname = dirname(__filename);
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get("/", (req, res) => {
-  res.send('Welcome to QR Code Generator');
+  const indexPath = path.join(__dirname, '../public/index.html');
+  
+  // Check if the file exists
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(404).send('index.html not found');
+  }
 });
 
 // app.get("/", (req, res) => {
