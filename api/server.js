@@ -36,11 +36,8 @@ app.get("/generate", (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(port, () => {
-    console.log(`QR Code Generator app listening at http://localhost:${port}`);
-  });
-}
+app.get('/api/test', (req, res) => {
+  res.json({ message: 'API is working' });
+});
 
-export default app;
 export default app;
