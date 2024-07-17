@@ -7,7 +7,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "echo hello"
-    //"start": "node api/server.js"
   },
   "author": "yash",
   "license": "ISC",
