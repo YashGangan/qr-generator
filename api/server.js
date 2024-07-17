@@ -40,4 +40,8 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'API is working' });
 });
 
+app.get("*", (req, res) => {
+  res.status(200).send('QR Code Generator is running');
+});
+
 export default app;
